@@ -2,14 +2,20 @@
 // function component
 import React from "react";
 class MyComponent extends React.Component {
+
+    state = {
+        name: 'Rain',
+        address: 'Ask for help',
+        age: 26
+    };
+
+    // JSX
     render() {
         return (
 
             <div>
-                My first component
-                {
-                    Math.random()
-                }
+                My name is {this.state.name} and I'm from {this.state.address}
+
             </div>
         );
     }
