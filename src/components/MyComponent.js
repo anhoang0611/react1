@@ -23,8 +23,6 @@ class MyComponent extends React.Component {
                     listUsers={this.state.listUsers}
                     user={this.state.listUsers}
                 />
-                <hr />
-
             </div>
         );
     }
