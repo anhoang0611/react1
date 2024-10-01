@@ -1,7 +1,7 @@
 // class component
 // function component
 import React from "react";
-import UserInfor from "./UserInfor";
+import AddUserInfor from "./AddUserInfor";
 import DisplayInfor from "./DisplayInfor";
 class MyComponent extends React.Component {
     state = {
@@ -12,16 +12,30 @@ class MyComponent extends React.Component {
         ]
     }
 
+    handleAddNewUser = (userObj) => {
+        // console.log("Check: ", userObj)
+        // let listUsersNew = this.state.listUsers;
+        // listUsersNew.push(userObj);
+        // this.setState({
+        //     listUsers: listUsersNew
+        // }) bad code vi ko dc tuong tac truc tiep voi bien cua react
+        this.setState({
+            listUsers: [userObj, ...this.state.listUsers]
+        })
+    }
+
     // JSX
     render() {
         //DRY : dont repeat yourself
         return (
             <div>
-                <UserInfor />
+                <AddUserInfor
+                    handleAddNewUser={this.handleAddNewUser}
+                />
                 <br />
                 <DisplayInfor
                     listUsers={this.state.listUsers}
-                    user={this.state.listUsers}
+
                 />
             </div>
         );
