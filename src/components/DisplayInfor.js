@@ -1,6 +1,10 @@
 import React from "react";
 
 class DisplayInfor extends React.Component {
+    handleShowHide = () => {
+        alert('me')
+    }
+
     render() {
         // destructuring array/obj
         const { listUsers } = this.props;
@@ -8,25 +12,25 @@ class DisplayInfor extends React.Component {
         // pros => viết tắt của propeties
         return (
             <div>
-                {listUsers.map((user) => {
-                    return (
-                        <div key={user.id}>
-                            <div>My name is {user.name} </div>
-                            <div>My age is {user.age} </div>
-                            <hr />
-                        </div>
+                <div>
+                    <span onClick={() => { this.handleShowHide() }}>
+                        Hide list users:
+                    </span>
+                </div>
+                <div>
+                    {listUsers.map((user) => {
+                        return (
+                            <div key={user.id} className={+user.age > 18 ? "green" : "red"} >
+                                <div>My name is {user.name} </div>
+                                <div>My age is {user.age} </div>
+                                <hr />
+                            </div>
 
-                    )
+                        )
 
-                })}
-                {/* <div>My name is {name}</div>
-                <div>My age is {age}</div>
-                <hr />
-                <div>My name is {name}</div>
-                <div>My age is {age}</div>
-                <hr />
-                <div>My name is {name}</div>
-                <div>My age is {age}</div> */}
+                    })}
+
+                </div>
             </div>
         )
     }
