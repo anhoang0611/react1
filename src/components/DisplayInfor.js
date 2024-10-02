@@ -18,7 +18,7 @@ class DisplayInfor extends React.Component {
         // pros => viết tắt của propeties
         return (
             <div className='display-infor-container'>
-                <img src={logo} />
+                {/* <img src={logo} /> */}
                 <div >
                     <span onClick={() => { this.handleShowHide() }}>
                         {this.state.isShowListUser === true ? "Hide list users:" : "Show list users:"}
@@ -27,12 +27,18 @@ class DisplayInfor extends React.Component {
                 {this.state.isShowListUser &&
                     <>
                         {listUsers.map((user) => {
+                            // console.log(user)
+
                             return (
                                 <div key={user.id} className={+user.age > 18 ? "green" : "red"} >
-                                    {/* khai bao inline k rmd su dung */}
-                                    <div>My name is {user.name} </div>
-                                    <div>My age is {user.age} </div>
-                                    <hr />
+                                    <div>
+                                        <div>My name is {user.name} </div>
+                                        <div>My age is {user.age} </div>
+                                    </div>
+                                    <div>
+                                        <button onClick={() => this.props.handleDeleteUser(user.id)}>Delete</button>
+                                    </div>
+
                                 </div>
 
                             )

@@ -17,15 +17,22 @@ class MyComponent extends React.Component {
             listUsers: [userObj, ...this.state.listUsers]
         })
     }
+    handleDeleteUser = (userId) => {
+        let listUsersClone = [...this.state.listUsers];
+        listUsersClone = listUsersClone.filter(item => item.id !== userId);
+        this.setState({
+            listUsers: listUsersClone
+        })
+    }
     // template + logic js
     // JSX
     render() {
         //DRY : dont repeat yourself
-        const test = { name: 'rain', age: '44' }
+
 
         return (
             <>
-                {JSON.stringify(test)}
+
                 <div className="a">
                     <AddUserInfor
                         handleAddNewUser={this.handleAddNewUser}
@@ -33,6 +40,7 @@ class MyComponent extends React.Component {
                     <br />
                     <DisplayInfor
                         listUsers={this.state.listUsers}
+                        handleDeleteUser={this.handleDeleteUser}
 
                     />
                 </div>
