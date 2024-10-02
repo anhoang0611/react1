@@ -17,12 +17,15 @@ class MyComponent extends React.Component {
             listUsers: [userObj, ...this.state.listUsers]
         })
     }
-
+    // template + logic js
     // JSX
     render() {
         //DRY : dont repeat yourself
+        const test = { name: 'rain', age: '44' }
+
         return (
             <>
+                {JSON.stringify(test)}
                 <div className="a">
                     <AddUserInfor
                         handleAddNewUser={this.handleAddNewUser}
