@@ -13,12 +13,6 @@ class MyComponent extends React.Component {
     }
 
     handleAddNewUser = (userObj) => {
-        // console.log("Check: ", userObj)
-        // let listUsersNew = this.state.listUsers;
-        // listUsersNew.push(userObj);
-        // this.setState({
-        //     listUsers: listUsersNew
-        // }) bad code vi ko dc tuong tac truc tiep voi bien cua react
         this.setState({
             listUsers: [userObj, ...this.state.listUsers]
         })
@@ -28,16 +22,21 @@ class MyComponent extends React.Component {
     render() {
         //DRY : dont repeat yourself
         return (
-            <div>
-                <AddUserInfor
-                    handleAddNewUser={this.handleAddNewUser}
-                />
-                <br />
-                <DisplayInfor
-                    listUsers={this.state.listUsers}
+            <>
+                <div className="a">
+                    <AddUserInfor
+                        handleAddNewUser={this.handleAddNewUser}
+                    />
+                    <br />
+                    <DisplayInfor
+                        listUsers={this.state.listUsers}
 
-                />
-            </div>
+                    />
+                </div>
+                <div className="b" >
+
+                </div>
+            </>
         );
     }
 }
