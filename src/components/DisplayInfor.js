@@ -44,7 +44,7 @@ import logo from './../logo.svg'
 
 const DisplayInfor = (props) => {
     const { listUsers } = props; //obj
-    // Destructuring assignment 
+
     const [isShowHideListUser, setShowHideListUser] = useState(true);// cu phap react hook
 
 
@@ -58,6 +58,7 @@ const DisplayInfor = (props) => {
         <div className='display-infor-container'>
             <div>
                 <span onClick={() => handleShowHideListUser()}>
+
                     {isShowHideListUser === true ? "Hide List User" : "Show List User"}
                 </span>
             </div>
