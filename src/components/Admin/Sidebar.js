@@ -10,6 +10,12 @@ import {
     SidebarContent,
 } from 'react-pro-sidebar';
 import sidebarBg from '../../assets/bg2.jpg';
+import './Sidebar.scss'
+import { DiReact } from "react-icons/di";
+
+
+
+import { MdSpaceDashboard } from "react-icons/md";
 
 
 const Sidebar = (props) => {
@@ -37,6 +43,7 @@ const Sidebar = (props) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
+                        <DiReact size={'3em'} color={'00bfff'} />
                         Shoppee
                     </div>
                 </SidebarHeader>
@@ -44,22 +51,21 @@ const Sidebar = (props) => {
                 <SidebarContent>
                     <Menu iconShape="circle">
                         <MenuItem
-                            icon={<FaTachometerAlt />}
-                            suffix={<span className="badge red">New</span>}
+                            icon={< MdSpaceDashboard />}
+                        // suffix={<span className="badge red">New</span>}
                         >
-                            dashboard
+                            Dashboard
                         </MenuItem>
-                        <MenuItem icon={<FaGem />}> components</MenuItem>
+                        {/* <MenuItem icon={<FaGem />}> Components</MenuItem> */}
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
-                            suffix={<span className="badge yellow">3</span>}
-
                             icon={<FaRegLaughWink />}
+                            title="Features"
                         >
-                            <MenuItem> 1</MenuItem>
-                            <MenuItem> 2</MenuItem>
-                            <MenuItem> 3</MenuItem>
+                            <MenuItem> Quản lý Users</MenuItem>
+                            <MenuItem> Quản lý Bài Quiz</MenuItem>
+                            <MenuItem> Quản lý Câu Hỏi</MenuItem>
                         </SubMenu>
 
 
@@ -79,9 +85,9 @@ const Sidebar = (props) => {
                             className="sidebar-btn"
                             rel="noopener noreferrer"
                         >
-                            <FaGithub />
+                            {/* <FaGithub /> */}
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                                view
+                                &#169;Shoppee
                             </span>
                         </a>
                     </div>
