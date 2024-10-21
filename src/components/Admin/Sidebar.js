@@ -12,6 +12,7 @@ import {
 import sidebarBg from '../../assets/bg2.jpg';
 import './Sidebar.scss'
 import { DiReact } from "react-icons/di";
+import { Link } from 'react-router-dom';
 
 
 
@@ -55,6 +56,7 @@ const Sidebar = (props) => {
                         // suffix={<span className="badge red">New</span>}
                         >
                             Dashboard
+                            <Link to="/admins" />
                         </MenuItem>
                         {/* <MenuItem icon={<FaGem />}> Components</MenuItem> */}
                     </Menu>
@@ -63,7 +65,7 @@ const Sidebar = (props) => {
                             icon={<FaRegLaughWink />}
                             title="Features"
                         >
-                            <MenuItem> Quản lý Users</MenuItem>
+                            <MenuItem> Quản lý Users  <Link to="manage-users" /></MenuItem>
                             <MenuItem> Quản lý Bài Quiz</MenuItem>
                             <MenuItem> Quản lý Câu Hỏi</MenuItem>
                         </SubMenu>
