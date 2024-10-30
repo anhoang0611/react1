@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
 import { toast } from 'react-toastify';
-import { postCreateNewUser } from '../../../services/apiServices';
+import { putUpdateUser } from '../../../services/apiServices';
 import _ from 'lodash';
 const ModalUpdateUsers = (props) => {
     const { show, setShow, dataUpdate } = props;
@@ -17,6 +17,7 @@ const ModalUpdateUsers = (props) => {
 
         setImage("");
         setPreviewImage("");
+        props.resetUpdateData();
     };
 
     const [email, setEmail] = useState("");
@@ -27,12 +28,12 @@ const ModalUpdateUsers = (props) => {
     const [previewImage, setPreviewImage] = useState("");
 
     useEffect(() => {
-        console.log('run useeffect', dataUpdate)
+
         if (!_.isEmpty(dataUpdate)) {
             //update state
             setEmail(dataUpdate.email);
-            setPassword(dataUpdate.username);
-            setUsername(dataUpdate.role);
+            setUsername(dataUpdate.username);
+            setRole(dataUpdate.role);
 
             setImage("");
             if (dataUpdate.image) {
@@ -40,7 +41,7 @@ const ModalUpdateUsers = (props) => {
             }
 
         }
-    }, [dataUpdate]);
+    }, [props.dataUpdate]);
 
 
     const handleUploadImage = (event) => {
@@ -70,14 +71,11 @@ const ModalUpdateUsers = (props) => {
             toast.error('Invalid Email')
             return;
         }
-        if (!password) {
-            toast.error('Invalid Password')
-            return;
-        }
+
 
         //submit data
 
-        let data = await postCreateNewUser(email, password, username, role, image);
+        let data = await putUpdateUser(dataUpdate.id, username, role, image);
 
         if (data && data.EC === 0) {
             toast.success(data.EM);
