@@ -41,6 +41,7 @@ const ManageUsers = (props) => {
     const resetUpdateData = () => {
         setDataUpdate({});
     }
+    // hiện Modal View
     const handleClickBtnView = (user) => {
         setShowModalViewUser(true);
         setDataUpdate(user);
@@ -85,6 +86,8 @@ const ManageUsers = (props) => {
                 <ModalViewUser
                     show={showModalViewUser}
                     setShow={setShowModalViewUser}
+                    dataUpdate={dataUpdate}
+
                 />
             </div>
 

@@ -41,7 +41,7 @@ const ModalUpdateUsers = (props) => {
             }
 
         }
-    }, [props.dataUpdate]);
+    }, [dataUpdate]);
 
 
     const handleUploadImage = (event) => {

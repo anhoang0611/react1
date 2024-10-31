@@ -11,47 +11,42 @@ const ModalViewUser = (props) => {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [role, setRole] = useState("USER");
-    const [image, setImage] = useState("");
+    // const [image, setImage] = useState("");
     const [previewImage, setPreviewImage] = useState("");
-    const [propsInfo, setPropsInfo] = useState({});
+
 
     const handleClose = () => {
-        setShow(false)
+        setShow(false);
         setEmail("");
         setPassword("");
         setUsername("");
         setRole("USER");
-
-        setImage("");
         setPreviewImage("");
-        // props.resetUpdateData();
-
     };
 
 
 
 
     useEffect(() => {
+        if (show && !_.isEmpty(dataUpdate)) {
+            setEmail(dataUpdate?.email || "");
+            setPassword(dataUpdate?.password || "");
+            setUsername(dataUpdate?.username || "");
+            setRole(dataUpdate?.role || "USER");
 
-        if (!_.isEmpty(dataUpdate)) {
-            setEmail(dataUpdate.email);
-
-            setUsername(dataUpdate.username);
-            setRole(dataUpdate.role);
-
-            setImage("");
+            // setImage("");
             if (dataUpdate.image) {
                 setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
             }
-            setPropsInfo(dataUpdate);
         }
-    }, [dataUpdate]);
+    }, [show, dataUpdate]);
+
 
 
     const handleShowImage = (event) => {
         if (event.target && event.target.files && event.target.files[0]) {
             setPreviewImage(URL.createObjectURL(event.target.files[0]));
-            setImage(event.target.files[0]);
+            // setImage(event.target.files[0]);
         }
 
     };
@@ -60,10 +55,6 @@ const ModalViewUser = (props) => {
 
     return (
         <>
-            {/* <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
-            </Button> */}
-
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -71,7 +62,7 @@ const ModalViewUser = (props) => {
                 backdrop="static"
                 className='modal-add-user'            >
                 <Modal.Header closeButton>
-                    <Modal.Title>Update User</Modal.Title>
+                    <Modal.Title>View User</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="row g-3">
@@ -102,13 +93,15 @@ const ModalViewUser = (props) => {
                                 type="text"
                                 className="form-control"
                                 value={username}
+                                disabled={true}
                                 onChange={(event) => setUsername(event.target.value)}
                             />
                         </div>
                         <div className="col-md-4">
                             <label className="form-label">Role</label>
                             <select className="form-select" onChange={(event) => setRole(event.target.value)}
-                                value={role}>
+                                value={role}
+                                disabled={true}>
                                 <option value="USER">USER</option>
                                 <option value="ADMIN">ADMIN</option>
                             </select>
