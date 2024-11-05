@@ -55,6 +55,7 @@ const ModalViewUser = (props) => {
 
     return (
         <>
+
             <Modal
                 show={show}
                 onHide={handleClose}
