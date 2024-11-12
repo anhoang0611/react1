@@ -1,23 +1,40 @@
 import { useState } from 'react';
 import './Login.scss';
-
+import { useNavigate } from 'react-router-dom';
+import { postLogin } from '../../services/apiServices';
+import { toast } from 'react-toastify';
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = () => {
-        alert('login')
+    const navigate = useNavigate();
+    const handleLogin = async () => {
+        //validate
+
+        //submit
+        let data = await postLogin(email, password);
+        console.log('check data: ', data);
+        if (data && data.EC === 0) {
+            toast.success(data.EM);
+            navigate('/')
+
+        }
+
+        if (data && +data.EC !== 0) {
+            toast.error(data.EM);
+
+        }
     }
     return (
         <div className="login-container">
             <div className='header'>
-                Don't have an account yet ?
-
+                <span>Don't have an account yet ?</span>
+                <button>Sign up</button>
             </div>
 
             <div className='tittle col-4 mx-auto' >
                 Ask me
-            </div>
+            </div>s
 
             <div className='welcome  col-4 mx-auto'>
                 Hello, who's this?
@@ -46,7 +63,16 @@ const Login = (props) => {
                 <span className='forgot-password'>Forgot password?</span>
 
                 <div>
-                    <button className='btn-submit'>Login to</button>
+                    <button
+                        className='btn-submit'
+                        onClick={() => { handleLogin() }}
+                    >Login to</button>
+                </div>
+
+                <div className='text-center'>
+                    <span
+                        className="back"
+                        onClick={() => { navigate('/') }}> &#60;&#60;Go Back Home</span>
                 </div>
 
             </div>
