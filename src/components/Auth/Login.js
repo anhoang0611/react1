@@ -5,7 +5,7 @@ import { postLogin } from '../../services/apiServices';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
-
+import { FaSpinner } from "react-icons/fa";
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
@@ -14,6 +14,7 @@ const Login = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const [isLoading, setIsLoading] = useState(false);
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -32,6 +33,7 @@ const Login = (props) => {
             toast.error('Invalid Password')
             return;
         }
+        setIsLoading(true);
         //submit
         let data = await postLogin(email, password);
 
@@ -39,11 +41,14 @@ const Login = (props) => {
             dispatch(doLogin(data))
 
             toast.success(data.EM);
-            navigate('/')
+            setIsLoading(false);
+            navigate('/');
+
 
         }
 
         if (data && +data.EC !== 0) {
+            setIsLoading(false);
             toast.error(data.EM);
 
         }
@@ -89,7 +94,10 @@ const Login = (props) => {
                     <button
                         className='btn-submit'
                         onClick={() => { handleLogin() }}
-                    >Login to</button>
+                        disabled={isLoading}
+                    >
+                        {isLoading === true && <FaSpinner className="loader-icon" />}
+                        Login to</button>
                 </div>
 
                 <div className='text-center'>
